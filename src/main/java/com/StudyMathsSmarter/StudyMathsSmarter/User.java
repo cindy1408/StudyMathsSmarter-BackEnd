@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity(name = "User")
-@Table(name = "user", uniqueConstraints = {
-        @UniqueConstraint(name ="user_email_address", columnNames = "user_email_address")
+@Entity(name = "Users")
+//user is a reserved name in db.. hence can't be used!
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(name ="email", columnNames = "email")
 })
 public class User {
     @Id
@@ -17,13 +18,13 @@ public class User {
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE, generator = "user_sequence"
     )
-    @Column(name ="id", updatable = false)
+    @Column(name ="id", updatable = false, nullable = false)
     private int id;
-    @Column(name="first_name")
+    @Column(name="first_name", nullable = false)
     private String firstName;
-    @Column(name="last_name")
+    @Column(name="last_name" , nullable = false)
     private String lastName;
-    @Column(name="email")
+    @Column(name="email" , nullable = false)
     private String email;
     @Column(name="score")
     private int score;
