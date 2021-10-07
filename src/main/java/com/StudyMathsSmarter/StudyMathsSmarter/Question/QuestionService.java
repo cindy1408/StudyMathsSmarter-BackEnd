@@ -68,4 +68,13 @@ public class QuestionService {
                     }
                 }, () -> System.out.println("Question id was not found!"));
     }
+    // DELETE REQUEST
+    public void deleteQuestion(int questionId){
+        questionRepositoryPostgres.findById(questionId)
+                .ifPresentOrElse(questionToDelete -> {
+                    questionRepositoryPostgres.delete(questionToDelete);
+                }, () -> {
+                    System.out.println("No question associated to this question Id");
+                });
+    }
 }
