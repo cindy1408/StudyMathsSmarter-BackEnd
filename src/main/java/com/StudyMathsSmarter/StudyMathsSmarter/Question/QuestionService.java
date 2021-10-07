@@ -38,7 +38,7 @@ public class QuestionService {
                 .ifPresentOrElse(selectedQuestion -> {
                     switch (columnToUpdate) {
                         case "topic" -> {
-                            Topics updateContentConverted = null; 
+                            Topics updateContentConverted = null;
                             if(Objects.equals(updateContent, "solving_equations")){
                                 updateContentConverted = Topics.SOLVING_EQUATION;
                             } else if (Objects.equals(updateContent, "geometry")){
@@ -50,7 +50,8 @@ public class QuestionService {
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
                         case "url" -> {
-                            selectedQuestion.setUrl(updateContent);
+                            //TODO: upload image from api?
+//                            selectedQuestion.setUrl(updateContent);
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
                         case "answer" -> {
@@ -67,5 +68,14 @@ public class QuestionService {
                         }
                     }
                 }, () -> System.out.println("Question id was not found!"));
+    }
+    // DELETE REQUEST
+    public void deleteQuestion(int questionId){
+        questionRepositoryPostgres.findById(questionId)
+                .ifPresentOrElse(questionToDelete -> {
+                    questionRepositoryPostgres.delete(questionToDelete);
+                }, () -> {
+                    System.out.println("No question associated to this question Id");
+                });
     }
 }
