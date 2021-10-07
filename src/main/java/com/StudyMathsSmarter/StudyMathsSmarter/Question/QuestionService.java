@@ -3,6 +3,8 @@ package com.StudyMathsSmarter.StudyMathsSmarter.Question;
 import com.StudyMathsSmarter.StudyMathsSmarter.Topics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -50,10 +52,9 @@ public class QuestionService {
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
 
-                        case "question_url" -> {
+                        case "question_image" -> {
                                //TODO: upload image from api?
-                               //selectedQuestion.setUrl(updateContent);
-                            selectedQuestion.setQuestionUrl(updateContent);
+                            selectedQuestion.setQuestionImage(updateContent.getBytes(StandardCharsets.UTF_8));
 
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
