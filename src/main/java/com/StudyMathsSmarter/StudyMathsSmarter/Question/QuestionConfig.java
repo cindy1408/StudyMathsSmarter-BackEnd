@@ -21,9 +21,10 @@ public class QuestionConfig {
                     "answers",
                     "resource link"
             );
+
+
             questionRepositoryPostgres.save(sample);
-            List<Question> questions = questionRepositoryPostgres.findAll();
-            ByteConverter.bytesToImage(questions.get(0).getQuestionImage());
+
 
         };
     }
