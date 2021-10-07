@@ -1,6 +1,7 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.Question;
 
 import com.StudyMathsSmarter.StudyMathsSmarter.Topics;
+import com.StudyMathsSmarter.StudyMathsSmarter.utils.ByteConverter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +16,15 @@ public class QuestionConfig {
             // add your questions! :D
             Question sample = new Question(
                     Topics.SOLVING_EQUATION,
-                    "url",
+                    ByteConverter.imageToBytes("solve_eq1.png"),
                     1,
                     "answers",
                     "resource link"
             );
-            questionRepositoryPostgres.saveAll(
-                    List.of(sample)
-            );
+            questionRepositoryPostgres.save(sample);
+            List<Question> questions = questionRepositoryPostgres.findAll();
+            ByteConverter.bytesToImage(questions.get(0).getQuestionImage());
+
         };
     }
 

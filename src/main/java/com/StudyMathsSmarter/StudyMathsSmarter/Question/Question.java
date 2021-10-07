@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "Question")
-@Table(name = "questions", uniqueConstraints = {@UniqueConstraint(name="questions_url", columnNames = "url")})
+@Table(name = "questions")
 
 public class Question {
     @Id
@@ -16,11 +16,11 @@ public class Question {
             strategy = GenerationType.SEQUENCE, generator = "question_sequence"
     )
     @Column(name = "id", updatable = false)
-    private Integer id;
+    private int id;
     @Column(name = "topic", nullable = false)
     private Topics topic;
-    @Column(name = "url", nullable = false)
-    private String url;
+    @Column(name = "question_image", nullable = false)
+    private byte[] questionImage;
     @Column(name = "level", nullable = false)
     private int level;
     @Column(name = "answer", nullable = false)
@@ -29,12 +29,12 @@ public class Question {
     private String resource;
 
     public Question(@JsonProperty("topic") Topics topic,
-                    @JsonProperty("url") String url,
+                    @JsonProperty("questionImage") byte[] questionImage,
                     @JsonProperty("level") int level,
                     @JsonProperty("answer") String answer,
                     @JsonProperty("resource") String resource) {
         this.topic = topic;
-        this.url = url;
+        this.questionImage = questionImage;
         this.level = level;
         this.answer = answer;
         this.resource = resource;
@@ -52,18 +52,21 @@ public class Question {
         this.topic = topic;
     }
 
-    public String getUrl() {
-        return url;
+    public byte[] getQuestionImage() {
+        return questionImage;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setQuestionImage(byte[] questionImage) {
+        this.questionImage = Question.this.questionImage;
     }
 
     public int getLevel() {
         return level;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setLevel(int level) {
         this.level = level;
     }
@@ -89,12 +92,12 @@ public class Question {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Question question = (Question) o;
-        return level == question.level && Objects.equals(id, question.id) && Objects.equals(topic, question.topic) && Objects.equals(url, question.url) && Objects.equals(answer, question.answer) && Objects.equals(resource, question.resource);
+        return level == question.level && Objects.equals(id, question.id) && Objects.equals(topic, question.topic) && Objects.equals(questionImage, question.questionImage) && Objects.equals(answer, question.answer) && Objects.equals(resource, question.resource);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, topic, url, level, answer, resource);
+        return Objects.hash(id, topic, questionImage, level, answer, resource);
     }
 
     @Override
@@ -102,7 +105,7 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", topic='" + topic + '\'' +
-                ", url='" + url + '\'' +
+                ", questionImage='" + questionImage + '\'' +
                 ", level=" + level +
                 ", answer='" + answer + '\'' +
                 ", resource='" + resource + '\'' +
