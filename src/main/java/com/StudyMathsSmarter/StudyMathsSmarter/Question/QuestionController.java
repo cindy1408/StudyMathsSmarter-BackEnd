@@ -25,4 +25,9 @@ public class QuestionController {
     public void updateQuestion(int questionId, String columnToUpdate, String contentToUpdate){
         questionService.updateQuestion(questionId, columnToUpdate, contentToUpdate);
     }
+
+    @DeleteMapping("/{questionId}")
+    public void deleteQuestion(int questionId){
+        questionService.deleteQuestion(questionId);
+    }
 }
