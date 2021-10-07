@@ -68,9 +68,6 @@ public class Question {
         return level;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
     public void setLevel(int level) {
         this.level = level;
     }
