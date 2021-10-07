@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "Question")
-@Table(name = "questions", uniqueConstraints = {@UniqueConstraint(name="questions_url", columnNames = "url")})
+@Table(name = "questions", uniqueConstraints = {@UniqueConstraint(name="questions_url", columnNames = "questions_url")})
 
 public class Question {
     @Id
@@ -19,8 +19,8 @@ public class Question {
     private int id;
     @Column(name = "topic", nullable = false)
     private Topics topic;
-    @Column(name = "url", nullable = false)
-    private String url;
+    @Column(name = "questions_url", nullable = false)
+    private String questionUrl;
     @Column(name = "level", nullable = false)
     private int level;
     @Column(name = "answer", nullable = false)
@@ -29,12 +29,12 @@ public class Question {
     private String resource;
 
     public Question(@JsonProperty("topic") Topics topic,
-                    @JsonProperty("url") String url,
+                    @JsonProperty("question_url") String questionUrl,
                     @JsonProperty("level") int level,
                     @JsonProperty("answer") String answer,
                     @JsonProperty("resource") String resource) {
         this.topic = topic;
-        this.url = url;
+        this.questionUrl = questionUrl;
         this.level = level;
         this.answer = answer;
         this.resource = resource;
@@ -55,12 +55,12 @@ public class Question {
         this.topic = topic;
     }
 
-    public String getUrl() {
-        return url;
+    public String getQuestionUrl() {
+        return questionUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setQuestionUrl(String questionUrl) {
+        this.questionUrl = questionUrl;
     }
 
     public int getLevel() {
@@ -92,12 +92,12 @@ public class Question {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Question question = (Question) o;
-        return level == question.level && Objects.equals(id, question.id) && Objects.equals(topic, question.topic) && Objects.equals(url, question.url) && Objects.equals(answer, question.answer) && Objects.equals(resource, question.resource);
+        return level == question.level && Objects.equals(id, question.id) && Objects.equals(topic, question.topic) && Objects.equals(questionUrl, question.questionUrl) && Objects.equals(answer, question.answer) && Objects.equals(resource, question.resource);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, topic, url, level, answer, resource);
+        return Objects.hash(id, topic, questionUrl, level, answer, resource);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", topic='" + topic + '\'' +
-                ", url='" + url + '\'' +
+                ", question_url='" + questionUrl + '\'' +
                 ", level=" + level +
                 ", answer='" + answer + '\'' +
                 ", resource='" + resource + '\'' +

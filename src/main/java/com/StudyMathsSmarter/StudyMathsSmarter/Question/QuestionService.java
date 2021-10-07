@@ -28,12 +28,12 @@ public class QuestionService {
 
     //POST REQUEST
     public void addNewQuestion(Question newQuestion){
-        questionRepositoryPostgres.findById(newQuestion.getId())
-                .orElse(questionRepositoryPostgres.save(newQuestion));
+        questionRepositoryPostgres.save(newQuestion);
     }
 
     //PUT REQUEST
-    public void updateQuestion(int questionId, String columnToUpdate, String updateContent){
+    //String columnToUpdate, String updateContent
+    public void updateQuestion(int questionId,String columnToUpdate, String updateContent){
         questionRepositoryPostgres.findById(questionId)
                 .ifPresentOrElse(selectedQuestion -> {
                     switch (columnToUpdate) {
@@ -49,8 +49,8 @@ public class QuestionService {
                             selectedQuestion.setTopic(updateContentConverted);
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
-                        case "url" -> {
-                            selectedQuestion.setUrl(updateContent);
+                        case "question_url" -> {
+                            selectedQuestion.setQuestionUrl(updateContent);
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
                         case "answer" -> {
@@ -71,9 +71,7 @@ public class QuestionService {
     // DELETE REQUEST
     public void deleteQuestion(int questionId){
         questionRepositoryPostgres.findById(questionId)
-                .ifPresentOrElse(questionToDelete -> {
-                    questionRepositoryPostgres.delete(questionToDelete);
-                }, () -> {
+                .ifPresentOrElse(questionRepositoryPostgres::delete, () -> {
                     System.out.println("No question associated to this question Id");
                 });
     }

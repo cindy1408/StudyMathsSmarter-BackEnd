@@ -6,9 +6,7 @@ import java.util.Objects;
 
 //user is a reserved name in db... hence can't be used!
 @Entity(name = "Users")
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(name ="email", columnNames = "email")
-})
+@Table(name = "users")
 public class User {
     @Id
     @SequenceGenerator( name="user_sequence",

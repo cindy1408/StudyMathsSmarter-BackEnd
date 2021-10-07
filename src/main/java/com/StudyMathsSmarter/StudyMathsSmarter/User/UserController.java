@@ -21,24 +21,23 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public Optional<User> getUser(int userId){
+    public Optional<User> getUser(@PathVariable int userId){
         return userService.getUser(userId);
     }
 
     @PostMapping
-    public void addNewUser(User newUser){
+    public void addNewUser(@RequestBody User newUser){
         userService.addNewUser(newUser);
     }
 
-    @PutMapping
-    public void updateUser(String userEmail, String columnToUpdate, String valueToUpdate){
-        userService.updateUser(userEmail, columnToUpdate, valueToUpdate);
+    @PutMapping("{userId}/{columnToUpdate}/{valueToUpdate}")
+    public void updateUser(@PathVariable int userId, @PathVariable String columnToUpdate, @PathVariable String valueToUpdate){
+        userService.updateUser(userId, columnToUpdate, valueToUpdate);
     }
 
-    @DeleteMapping
-    public void deleteUser(String userEmail){
-        userService.deleteUser(userEmail);
+    @DeleteMapping("{userId}")
+    public void deleteUser(@PathVariable int userId){
+        userService.deleteUser(userId);
     }
-
 
 }
