@@ -1,4 +1,4 @@
-package com.StudyMathsSmarter.StudyMathsSmarter;
+package com.StudyMathsSmarter.StudyMathsSmarter.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

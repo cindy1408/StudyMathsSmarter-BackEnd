@@ -1,4 +1,5 @@
-package com.StudyMathsSmarter.StudyMathsSmarter;
+package com.StudyMathsSmarter.StudyMathsSmarter.Question;
+import com.StudyMathsSmarter.StudyMathsSmarter.Topics;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.util.Objects;
@@ -41,6 +42,8 @@ public class Question {
 
     public Question() {
     }
+
+    public int getId(){return id; }
 
     public Topics getTopic() {
         return topic;
