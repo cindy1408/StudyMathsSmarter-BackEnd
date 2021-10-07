@@ -1,9 +1,11 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.Question;
 
 import com.StudyMathsSmarter.StudyMathsSmarter.Topics;
+import com.StudyMathsSmarter.StudyMathsSmarter.utils.ByteConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
@@ -54,7 +56,11 @@ public class QuestionService {
 
                         case "question_image" -> {
                                //TODO: upload image from api?
-                            selectedQuestion.setQuestionImage(updateContent.getBytes(StandardCharsets.UTF_8));
+                            try {
+                                selectedQuestion.setQuestionImage(ByteConverter.imageToBytes(updateContent));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            };
 
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
