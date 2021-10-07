@@ -34,39 +34,40 @@ public class QuestionService {
 
     //PUT REQUEST
     public void updateQuestion(int questionId, String columnToUpdate, String updateContent){
-//        questionRepositoryPostgres.findById(questionId)
-//                .ifPresentOrElse(selectedQuestion -> {
-//                    switch (columnToUpdate) {
-//                        case "topic" -> {
-//                            Topics updateContentConverted = null;
-//                            if(Objects.equals(updateContent, "solving_equations")){
-//                                updateContentConverted = Topics.SOLVING_EQUATION;
-//                            } else if (Objects.equals(updateContent, "geometry")){
-//                                updateContentConverted = Topics.GEOMETRY;
-//                            } else if (Objects.equals(updateContent, "trigonometry")){
-//                                updateContentConverted = Topics.TRIGONOMETRY;
-//                            }
-//                            selectedQuestion.setTopic(updateContentConverted);
-//                            questionRepositoryPostgres.save(selectedQuestion);
-//                        }
-//                        case "url" -> {
+        questionRepositoryPostgres.findById(questionId)
+                .ifPresentOrElse(selectedQuestion -> {
+                    switch (columnToUpdate) {
+                        case "topic" -> {
+                            Topics updateContentConverted = null;
+                            if(Objects.equals(updateContent, "solving_equations")){
+                                updateContentConverted = Topics.SOLVING_EQUATION;
+                            } else if (Objects.equals(updateContent, "geometry")){
+                                updateContentConverted = Topics.GEOMETRY;
+                            } else if (Objects.equals(updateContent, "trigonometry")){
+                                updateContentConverted = Topics.TRIGONOMETRY;
+                            }
+                            selectedQuestion.setTopic(updateContentConverted);
+                            questionRepositoryPostgres.save(selectedQuestion);
+                        }
+                        case "url" -> {
+                            //TODO: upload image from api?
 //                            selectedQuestion.setUrl(updateContent);
-//                            questionRepositoryPostgres.save(selectedQuestion);
-//                        }
-//                        case "answer" -> {
-//                            selectedQuestion.setAnswer(updateContent);
-//                            questionRepositoryPostgres.save(selectedQuestion);
-//                        }
-//                        case "level" -> {
-//                            selectedQuestion.setLevel(Integer.parseInt(updateContent));
-//                            questionRepositoryPostgres.save(selectedQuestion);
-//                        }
-//                        case "resource" -> {
-//                            selectedQuestion.setResource(updateContent);
-//                            questionRepositoryPostgres.save(selectedQuestion);
-//                        }
-//                    }
-//                }, () -> System.out.println("Question id was not found!"));
+                            questionRepositoryPostgres.save(selectedQuestion);
+                        }
+                        case "answer" -> {
+                            selectedQuestion.setAnswer(updateContent);
+                            questionRepositoryPostgres.save(selectedQuestion);
+                        }
+                        case "level" -> {
+                            selectedQuestion.setLevel(Integer.parseInt(updateContent));
+                            questionRepositoryPostgres.save(selectedQuestion);
+                        }
+                        case "resource" -> {
+                            selectedQuestion.setResource(updateContent);
+                            questionRepositoryPostgres.save(selectedQuestion);
+                        }
+                    }
+                }, () -> System.out.println("Question id was not found!"));
     }
     // DELETE REQUEST
     public void deleteQuestion(int questionId){

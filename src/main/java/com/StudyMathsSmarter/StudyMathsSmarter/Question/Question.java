@@ -18,6 +18,7 @@ public class Question {
     @Column(name = "id", updatable = false)
     private int id;
     @Column(name = "topic", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Topics topic;
     @Column(name = "question_image", nullable = false)
     private byte[] questionImage;
