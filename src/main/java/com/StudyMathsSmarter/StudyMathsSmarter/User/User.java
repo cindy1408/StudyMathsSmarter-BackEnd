@@ -1,12 +1,11 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.Objects;
 
+//user is a reserved name in db... hence can't be used!
 @Entity(name = "Users")
-//user is a reserved name in db.. hence can't be used!
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(name ="email", columnNames = "email")
 })
@@ -37,6 +36,12 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.score = score;
+    }
+
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     public User() {
