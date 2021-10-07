@@ -38,7 +38,7 @@ public class QuestionService {
                 .ifPresentOrElse(selectedQuestion -> {
                     switch (columnToUpdate) {
                         case "topic" -> {
-                            Topics updateContentConverted = null; 
+                            Topics updateContentConverted = null;
                             if(Objects.equals(updateContent, "solving_equations")){
                                 updateContentConverted = Topics.SOLVING_EQUATION;
                             } else if (Objects.equals(updateContent, "geometry")){
@@ -49,8 +49,12 @@ public class QuestionService {
                             selectedQuestion.setTopic(updateContentConverted);
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
+
                         case "question_url" -> {
+                               //TODO: upload image from api?
+                               //selectedQuestion.setUrl(updateContent);
                             selectedQuestion.setQuestionUrl(updateContent);
+
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
                         case "answer" -> {
