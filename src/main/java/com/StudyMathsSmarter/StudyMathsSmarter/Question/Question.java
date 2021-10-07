@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "Question")
-@Table(name = "questions", uniqueConstraints = {@UniqueConstraint(name="questions_url", columnNames = "questions_url")})
+@Table(name = "questions", uniqueConstraints = {@UniqueConstraint(name="question_image", columnNames = "question_image")})
 
 
 public class Question {
