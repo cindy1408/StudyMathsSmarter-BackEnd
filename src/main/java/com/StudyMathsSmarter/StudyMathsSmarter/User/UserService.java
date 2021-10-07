@@ -34,8 +34,8 @@ public class UserService {
     }
 
     //PUT REQUEST
-    public void updateUser(String userEmail, String columnToUpdate, String valueToUpdate){
-        userRepositoryPostgres.findUserByEmail(userEmail)
+    public void updateUser(int userId, String columnToUpdate, String valueToUpdate){
+        userRepositoryPostgres.findById(userId)
                 .ifPresentOrElse(user -> {
                             switch (columnToUpdate) {
                                 case "first_name" -> {
@@ -59,8 +59,8 @@ public class UserService {
     }
 
     //DELETE REQUEST
-    public void deleteUser(String userEmail){
-        userRepositoryPostgres.findUserByEmail(userEmail)
+    public void deleteUser(int userId){
+        userRepositoryPostgres.findById(userId)
                 .ifPresentOrElse(userRepositoryPostgres::delete, () -> System.out.println("cannot find user by email"));
     }
 
