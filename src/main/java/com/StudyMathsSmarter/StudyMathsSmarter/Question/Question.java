@@ -16,7 +16,7 @@ public class Question {
             strategy = GenerationType.SEQUENCE, generator = "question_sequence"
     )
     @Column(name = "id", updatable = false)
-    private Integer id;
+    private int id;
     @Column(name = "topic", nullable = false)
     private Topics topic;
     @Column(name = "url", nullable = false)
@@ -43,7 +43,9 @@ public class Question {
     public Question() {
     }
 
-    public int getId(){return id; }
+    public int getId(){ return id; }
+
+    public void setId(int id){ this.id = id; }
 
     public Topics getTopic() {
         return topic;
