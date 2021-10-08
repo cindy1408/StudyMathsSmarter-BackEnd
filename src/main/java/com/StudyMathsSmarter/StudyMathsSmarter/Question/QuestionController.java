@@ -1,5 +1,6 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.Question;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import java.util.Optional;
 public class QuestionController {
     public final QuestionService questionService;
 
+    @Autowired
     public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
     }

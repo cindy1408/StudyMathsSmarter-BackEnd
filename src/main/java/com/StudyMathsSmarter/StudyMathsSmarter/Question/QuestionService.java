@@ -60,6 +60,7 @@ public class QuestionService {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             };
+
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
                         case "answer" -> {

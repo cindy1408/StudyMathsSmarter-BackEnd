@@ -8,6 +8,7 @@ import java.util.Objects;
 @Table(name = "questions")
 
 
+
 public class Question {
     @Id
     @SequenceGenerator(name = "question_sequence",
