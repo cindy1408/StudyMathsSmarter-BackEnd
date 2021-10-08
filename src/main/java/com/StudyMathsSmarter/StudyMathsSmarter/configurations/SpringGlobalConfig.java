@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class SpringGlobalConfig implements WebMvcConfigurer {
-
     private static final String CORS_BASE_PATTERN = "/**";
     private static final String ALLOWED_ORIGINS = "*";
     private static final String ALLOWED_HEADERS = "*";
@@ -19,4 +18,3 @@ public class SpringGlobalConfig implements WebMvcConfigurer {
                 .allowedHeaders(ALLOWED_HEADERS)
                 .allowedMethods(ALLOWED_METHODS);
     }
-}
