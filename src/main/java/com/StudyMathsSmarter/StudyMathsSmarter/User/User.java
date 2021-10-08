@@ -24,7 +24,7 @@ public class User {
     @Column(name="email" , nullable = false)
     private String email;
     @Column(name="score")
-    private int score;
+    private double score;
 
     public User(@JsonProperty("first_name") String firstName,
                 @JsonProperty("last_name") String lastName,
@@ -77,11 +77,11 @@ public class User {
         this.email = email;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
