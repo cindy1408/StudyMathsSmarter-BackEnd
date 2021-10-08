@@ -6,9 +6,6 @@ import java.util.Objects;
 
 @Entity(name = "Question")
 @Table(name = "questions")
-
-
-
 public class Question {
     @Id
     @SequenceGenerator(name = "question_sequence",

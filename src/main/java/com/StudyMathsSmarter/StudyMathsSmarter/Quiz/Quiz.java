@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity(name="quiz")
+@Entity(name="Quiz")
 @Table(name="quiz")
 public class Quiz {
     @Id
@@ -19,21 +19,44 @@ public class Quiz {
     private int id;
     @Column(name="user_id")
     private int userId;
-    @Column(name="question_id")
-    private int questionId;
+    @Column(name="question_S1_score")
+    private int questionS1Score;
+    @Column(name="question_S2_score")
+    private int questionS2Score;
+    @Column(name="question_G1_score")
+    private int questionG1Score;
+    @Column(name="question_G2_score")
+    private int questionG2Score;
+    @Column(name="question_T1_score")
+    private int questionT1Score;
+    @Column(name="question_T2_score")
+    private int questionT2Score;
     @Column(name="time_stamp")
     private LocalDate timeStamp;
     @Column(name="result")
-    private int result;
+    private double result;
 
-    public Quiz(@JsonProperty("user_id") int userId,
-                @JsonProperty("question_id") int questionId,
-                @JsonProperty("time_stamp") LocalDate timeStamp,
-                @JsonProperty("result") int result) {
+    public Quiz(int userId, int questionS1Score, int questionS2Score, int questionG1Score, int questionG2Score, int questionT1Score, int questionT2Score, LocalDate timeStamp, double result) {
         this.userId = userId;
-        this.questionId = questionId;
+        this.questionS1Score = questionS1Score;
+        this.questionS2Score = questionS2Score;
+        this.questionG1Score = questionG1Score;
+        this.questionG2Score = questionG2Score;
+        this.questionT1Score = questionT1Score;
+        this.questionT2Score = questionT2Score;
         this.timeStamp = timeStamp;
         this.result = result;
+    }
+
+    public Quiz() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -44,12 +67,52 @@ public class Quiz {
         this.userId = userId;
     }
 
-    public int getQuestionId() {
-        return questionId;
+    public int getQuestionS1Score() {
+        return questionS1Score;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+    public void setQuestionS1Score(int questionS1Score) {
+        this.questionS1Score = questionS1Score;
+    }
+
+    public int getQuestionS2Score() {
+        return questionS2Score;
+    }
+
+    public void setQuestionS2Score(int questionS2Score) {
+        this.questionS2Score = questionS2Score;
+    }
+
+    public int getQuestionG1Score() {
+        return questionG1Score;
+    }
+
+    public void setQuestionG1Score(int questionG1Score) {
+        this.questionG1Score = questionG1Score;
+    }
+
+    public int getQuestionG2Score() {
+        return questionG2Score;
+    }
+
+    public void setQuestionG2Score(int questionG2Score) {
+        this.questionG2Score = questionG2Score;
+    }
+
+    public int getQuestionT1Score() {
+        return questionT1Score;
+    }
+
+    public void setQuestionT1Score(int questionT1Score) {
+        this.questionT1Score = questionT1Score;
+    }
+
+    public int getQuestionT2Score() {
+        return questionT2Score;
+    }
+
+    public void setQuestionT2Score(int questionT2Score) {
+        this.questionT2Score = questionT2Score;
     }
 
     public LocalDate getTimeStamp() {
@@ -60,11 +123,11 @@ public class Quiz {
         this.timeStamp = timeStamp;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 
-    public void setResult(int result) {
+    public void setResult(double result) {
         this.result = result;
     }
 
@@ -73,12 +136,12 @@ public class Quiz {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Quiz quiz = (Quiz) o;
-        return id == quiz.id && userId == quiz.userId && questionId == quiz.questionId && result == quiz.result && Objects.equals(timeStamp, quiz.timeStamp);
+        return id == quiz.id && userId == quiz.userId && questionS1Score == quiz.questionS1Score && questionS2Score == quiz.questionS2Score && questionG1Score == quiz.questionG1Score && questionG2Score == quiz.questionG2Score && questionT1Score == quiz.questionT1Score && questionT2Score == quiz.questionT2Score && Double.compare(quiz.result, result) == 0 && Objects.equals(timeStamp, quiz.timeStamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, questionId, timeStamp, result);
+        return Objects.hash(id, userId, questionS1Score, questionS2Score, questionG1Score, questionG2Score, questionT1Score, questionT2Score, timeStamp, result);
     }
 
     @Override
@@ -86,7 +149,12 @@ public class Quiz {
         return "Quiz{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", questionId=" + questionId +
+                ", questionS1Score=" + questionS1Score +
+                ", questionS2Score=" + questionS2Score +
+                ", questionG1Score=" + questionG1Score +
+                ", questionG2Score=" + questionG2Score +
+                ", questionT1Score=" + questionT1Score +
+                ", questionT2Score=" + questionT2Score +
                 ", timeStamp=" + timeStamp +
                 ", result=" + result +
                 '}';
