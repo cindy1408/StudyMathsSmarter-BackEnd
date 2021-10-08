@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "Question")
-@Table(name = "questions", uniqueConstraints = {@UniqueConstraint(name="questions_url", columnNames = "questions_url")})
+@Table(name = "questions")
 
 
 public class Question {
@@ -21,7 +21,7 @@ public class Question {
     @Column(name = "topic", nullable = false)
     @Enumerated(EnumType.STRING)
     private Topics topic;
-    @Column(name = "question_image", nullable = false)
+    @Column(name = "question_image")
     private byte[] questionImage;
     @Column(name = "level", nullable = false)
     private int level;
