@@ -29,7 +29,7 @@ public class Question {
     private String resource;
 
     public Question(@JsonProperty("topic") Topics topic,
-                    @JsonProperty("questionImage") byte[] questionImage,
+                    @JsonProperty("question_image") byte[] questionImage,
                     @JsonProperty("level") int level,
                     @JsonProperty("answer") String answer,
                     @JsonProperty("resource") String resource) {
