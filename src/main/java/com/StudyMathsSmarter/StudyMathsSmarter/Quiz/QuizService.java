@@ -149,12 +149,13 @@ public class QuizService {
                 }, () -> System.out.println("Cannot find your quiz id"));
     }
 
-    public void addLocalDateToQuiz(int quizId){
+    public void addLocalDateToQuiz(int quizId) {
         quizRepositoryPostgres.findById(quizId)
                 .ifPresentOrElse(selectedQuiz -> {
                     selectedQuiz.setTimeStamp(LocalDate.now());
                     quizRepositoryPostgres.save(selectedQuiz);
                 }, () -> System.out.println("Cannot find your quiz id"));
+    }
 
     private Integer[] randomInt(int n, int k){
         final Set<Integer> picked = new HashSet<>();
