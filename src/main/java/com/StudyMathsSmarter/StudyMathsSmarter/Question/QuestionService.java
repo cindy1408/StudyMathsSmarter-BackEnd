@@ -54,13 +54,11 @@ public class QuestionService {
                         }
 
                         case "question_image" -> {
-                               //TODO: upload image from api?
                             try {
                                 selectedQuestion.setQuestionImage(ByteConverter.imageToBytes(updateContent));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             };
-
                             questionRepositoryPostgres.save(selectedQuestion);
                         }
                         case "answer" -> {

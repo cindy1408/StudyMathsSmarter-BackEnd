@@ -5,7 +5,6 @@ import com.StudyMathsSmarter.StudyMathsSmarter.utils.ByteConverter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.List;
 
 @Configuration
@@ -13,9 +12,7 @@ public class QuestionConfig {
     @Bean
     CommandLineRunner commandLineRunner(QuestionRepositoryPostgres questionRepositoryPostgres){
         return args -> {
-            // add your questions
-            //SOLVING EQUATIONS
-            // QUESTION NAME = 'question' +  topic initial + level + question number
+
             Question questionS11 = new Question(
                     Topics.SOLVING_EQUATION,
                     ByteConverter.imageToBytes("questionS11.png"),

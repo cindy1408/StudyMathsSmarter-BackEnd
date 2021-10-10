@@ -6,8 +6,10 @@ import com.StudyMathsSmarter.StudyMathsSmarter.Topics;
 import com.StudyMathsSmarter.StudyMathsSmarter.User.UserRepositoryPostgres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -97,5 +99,49 @@ public class QuizService {
 
     public List<Quiz> selectAllQuizForUser(int userId){
         return quizRepositoryPostgres.selectAllQuizForUser(userId);
+    }
+
+    public void updateQuiz(int quizId, String columnToUpdate, int contentToUpdate){
+        quizRepositoryPostgres.findById(quizId)
+                .ifPresentOrElse(selectedQuiz -> {
+                    switch (columnToUpdate) {
+                        case "question_g1_score" -> {
+                            selectedQuiz.setQuestionG1Score(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                        case "question_g2_score" -> {
+                            selectedQuiz.setQuestionG2Score(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                        case "question_s1_score" -> {
+                            selectedQuiz.setQuestionS1Score(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                        case "question_s2_score" -> {
+                            selectedQuiz.setQuestionS2Score(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                        case "question_t1_score" -> {
+                            selectedQuiz.setQuestionT1Score(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                        case "question_t2_score" -> {
+                            selectedQuiz.setQuestionT2Score(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                        case "user_id" -> {
+                            selectedQuiz.setUserId(contentToUpdate);
+                            quizRepositoryPostgres.save(selectedQuiz);
+                        }
+                    }
+                }, () -> System.out.println("Cannot find your quiz id"));
+    }
+
+    public void addLocalDateToQuiz(int quizId){
+        quizRepositoryPostgres.findById(quizId)
+                .ifPresentOrElse(selectedQuiz -> {
+                    selectedQuiz.setTimeStamp(LocalDate.now());
+                    quizRepositoryPostgres.save(selectedQuiz);
+                }, () -> System.out.println("Cannot find your quiz id"));
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +63,15 @@ public class QuizController {
     @GetMapping("{id}")
     public List<Quiz> getAllQuizForUser(@PathVariable("id") int userId){
         return quizService.selectAllQuizForUser(userId);
+    }
+
+    @PutMapping("{quizId}/{columnToUpdate}/{contentToUpdate}")
+    public void updateQuiz(@PathVariable int quizId, @PathVariable String columnToUpdate, @PathVariable int contentToUpdate){
+        quizService.updateQuiz(quizId, columnToUpdate, contentToUpdate);
+    }
+
+    @PutMapping("{quizId}")
+    public void addLocalDateToQuiz(@PathVariable int quizId){
+        quizService.addLocalDateToQuiz(quizId);
     }
 }

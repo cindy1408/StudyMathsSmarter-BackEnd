@@ -18,3 +18,4 @@ public class SpringGlobalConfig implements WebMvcConfigurer {
                 .allowedHeaders(ALLOWED_HEADERS)
                 .allowedMethods(ALLOWED_METHODS);
     }
+}
