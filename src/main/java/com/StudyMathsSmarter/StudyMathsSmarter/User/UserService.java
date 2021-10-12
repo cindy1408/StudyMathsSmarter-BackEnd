@@ -1,7 +1,13 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.User;
 
+import com.StudyMathsSmarter.StudyMathsSmarter.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,4 +70,26 @@ public class UserService {
                 .ifPresentOrElse(userRepositoryPostgres::delete, () -> System.out.println("cannot find user by email"));
     }
 
+    public List<User> getTopTen(){
+        return userRepositoryPostgres.findTopTen().stream().limit(10).toList();
+    }
+
+//    public void login(String email, String password){
+//        Optional<User> user = userRepositoryPostgres.findUserByEmail(email);
+//        if (user.isEmpty()){
+//            throw new NotFoundException("user email or password incorrect");
+//        }
+//
+//        if (!passwordCheck(password, user.get().getPassword())){
+//            throw new NotFoundException("user email or password incorrect");
+//        }
+//    }
+//
+    public static PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder(10, new SecureRandom());
+    }
+
+    public static boolean passwordCheck(String password, String encodedPassword){
+        return passwordEncoder().matches(password, encodedPassword);
+    }
 }

@@ -55,31 +55,9 @@ public class QuizService {
         return quiz;
     }
 
-    //Show result for unregistered user
-    public Quiz getQuizResult(List<String> answers){
-        int score = 0;
-        double fullScore = 0;
-
-        int[] scores = new int[6];
-        for (int i = 0; i < answers.size(); i++){
-            if (answers.get(i).equals(quiz.get(i).getAnswer())){
-                scores[i] = quiz.get(i).getLevel();
-                score = score + quiz.get(i).getLevel();
-            }
-            fullScore = fullScore + quiz.get(i).getLevel();
-        }
-
-        double finalScore = score/fullScore*100;
-
-        Quiz quiz = new Quiz(0, scores[0], scores[1], scores[2], scores[3], scores[4], scores[5], LocalDate.now(), finalScore);
-        return quiz;
-    }
-
-    //Show result for registered user and save to database
     public Quiz getQuizResultForUser(int userId, List<String> answers){
         int score = 0;
         double fullScore = 0;
-        User user = userRepositoryPostgres.findById(userId).get();
 
         int[] scores = new int[6];
         for (int i = 0; i < answers.size(); i++){
@@ -94,11 +72,13 @@ public class QuizService {
 
         Quiz quiz = new Quiz(userId, scores[0], scores[1], scores[2], scores[3], scores[4], scores[5], LocalDate.now(), finalScore);
 
-        quizRepositoryPostgres.save(quiz);
-
-        if (finalScore > user.getScore()){
-            user.setScore(finalScore);
-            userRepositoryPostgres.save(user);
+        if (userId != 0){
+            quizRepositoryPostgres.save(quiz);
+            User user = userRepositoryPostgres.findById(userId).get();
+            if (finalScore > user.getScore()){
+                user.setScore(finalScore);
+                userRepositoryPostgres.save(user);
+            }
         }
 
         return quiz;
