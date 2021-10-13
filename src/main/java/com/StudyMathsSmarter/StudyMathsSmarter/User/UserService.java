@@ -1,8 +1,9 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.User;
 
-import com.StudyMathsSmarter.StudyMathsSmarter.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepositoryPostgres userRepositoryPostgres;
 
     @Autowired
@@ -70,26 +71,36 @@ public class UserService {
                 .ifPresentOrElse(userRepositoryPostgres::delete, () -> System.out.println("cannot find user by email"));
     }
 
+    public User getUserByEmail(String username){
+        Optional<User> user = userRepositoryPostgres.findUserByEmail(username);
+        if (user.isEmpty()){
+            throw new UsernameNotFoundException("username or password not found");
+        }
+
+        return user.get();
+    }
+
     public List<User> getTopTen(){
         return userRepositoryPostgres.findTopTen().stream().limit(10).toList();
     }
 
-//    public void login(String email, String password){
-//        Optional<User> user = userRepositoryPostgres.findUserByEmail(email);
-//        if (user.isEmpty()){
-//            throw new NotFoundException("user email or password incorrect");
-//        }
-//
-//        if (!passwordCheck(password, user.get().getPassword())){
-//            throw new NotFoundException("user email or password incorrect");
-//        }
-//    }
-//
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(10, new SecureRandom());
     }
 
     public static boolean passwordCheck(String password, String encodedPassword){
         return passwordEncoder().matches(password, encodedPassword);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByEmail(username);
+
+        org.springframework.security.core.userdetails.User.UserBuilder builder = null;
+        builder = org.springframework.security.core.userdetails.User.withUsername(username);
+        builder.password(user.getPassword());
+        builder.roles(user.getRole().toString());
+
+        return builder==null ? null : builder.build();
     }
 }

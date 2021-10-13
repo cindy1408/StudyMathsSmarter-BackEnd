@@ -6,8 +6,8 @@ import java.util.Set;
 import static com.StudyMathsSmarter.StudyMathsSmarter.security.AppUserPermission.*;
 
 public enum AppUserRole {
-    STUDENT(Set.of(USER_READ, QUESTION_READ)),
-    ADMIN(Set.of(USER_READ, USER_WRITE, QUESTION_READ, QUESTION_WRITE));
+    STUDENT(Set.of(USER_READ, QUESTION_READ, QUIZ_READ, QUIZ_WRITE)),
+    ADMIN(Set.of(USER_READ, USER_WRITE, QUESTION_READ, QUESTION_WRITE, QUIZ_READ, QUIZ_WRITE));
 
     private final Set<AppUserPermission> permissions;
 

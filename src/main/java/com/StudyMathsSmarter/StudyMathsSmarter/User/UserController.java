@@ -42,6 +42,11 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
+    @GetMapping("/find")
+    public User getUserByEmail(@RequestParam("username") String username){
+        return userService.getUserByEmail(username);
+    }
+
     @GetMapping("rank")
     public List<User> findTopTen(){
         return userService.getTopTen();

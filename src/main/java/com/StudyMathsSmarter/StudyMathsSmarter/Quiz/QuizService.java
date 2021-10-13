@@ -68,7 +68,7 @@ public class QuizService {
             fullScore = fullScore + quiz.get(i).getLevel();
         }
 
-        double finalScore = score/fullScore*100;
+        int finalScore = (int) (score/fullScore*100);
 
         Quiz quiz = new Quiz(userId, scores[0], scores[1], scores[2], scores[3], scores[4], scores[5], LocalDate.now(), finalScore);
 

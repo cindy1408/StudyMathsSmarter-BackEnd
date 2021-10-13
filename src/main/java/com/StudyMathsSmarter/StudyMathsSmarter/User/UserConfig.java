@@ -1,5 +1,6 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.User;
 
+import com.StudyMathsSmarter.StudyMathsSmarter.security.AppUserRole;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +18,20 @@ public class UserConfig {
                     "Cindy",
                     "Cheung",
                     "cindycheung1408@gmail.com",
-                    UserService.passwordEncoder().encode("Cindy")
+                    UserService.passwordEncoder().encode("Cindy"),
+                    AppUserRole.STUDENT
+            );
+
+            User yulin = new User(
+                    "Yulin",
+                    "Chen",
+                    "yulin@gmail.com",
+                    UserService.passwordEncoder().encode("Yulin"),
+                    AppUserRole.ADMIN
             );
 
             userRepositoryPostgres.saveAll(
-                    List.of(sample)
+                    List.of(sample, yulin)
             );
 
             Faker faker = new Faker();
@@ -31,7 +41,7 @@ public class UserConfig {
                 String lastName = faker.name().lastName();
                 String email = String.format("%s.%s@brightnetwork.com", firstName, lastName);
 
-                User user = new User(firstName, lastName, email, UserService.passwordEncoder().encode(firstName), Math.random()*100);
+                User user = new User(firstName, lastName, email, UserService.passwordEncoder().encode(firstName), (int) Math.random()*100, AppUserRole.STUDENT);
                 userRepositoryPostgres.save(user);
             }
 
