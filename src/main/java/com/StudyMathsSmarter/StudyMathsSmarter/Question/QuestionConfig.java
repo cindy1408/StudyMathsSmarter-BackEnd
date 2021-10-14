@@ -18,7 +18,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionS11.png"),
                     1,
                     "a",
-                    "https://www.mathsgenie.co.uk/simultaneous-quadratic.html"
+                    "https://justmaths.co.uk/wp-content/uploads/2015/12/Algebra-H-Forming-Solving-Equations-v1.pdf"
             );
 
 
@@ -27,7 +27,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionS21.png"),
                     2,
                     "a",
-                    "https://www.mathsgenie.co.uk/simultaneous-quadratic.html"
+                    "https://justmaths.co.uk/wp-content/uploads/2015/12/Algebra-H-Forming-Solving-Equations-v1.pdf"
             );
 
 
@@ -36,7 +36,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionS31.png"),
                     3,
                     "d",
-                    "https://www.mathsgenie.co.uk/simultaneous-quadratic.html"
+                    "https://justmaths.co.uk/wp-content/uploads/2015/12/Algebra-H-Forming-Solving-Equations-v1.pdf"
             );
 
             Question questionG11 = new Question(
@@ -44,7 +44,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionG11.png"),
                     1,
                     "b",
-                    "https://www.mathsgenie.co.uk/circles.html"
+                    "https://justmaths.co.uk/wp-content/uploads/2015/12/Geometry-H-Similarity-Congruence-v2.pdf"
             );
 
             Question questionG21 = new Question(
@@ -52,7 +52,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionG21.png"),
                     2,
                     "c",
-                    "https://www.mathsgenie.co.uk/circles.html"
+                    "https://justmaths.co.uk/wp-content/uploads/2015/12/Geometry-H-Similarity-Congruence-v2.pdf"
             );
 
 
@@ -61,7 +61,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionG31.png"),
                     3,
                     "a",
-                    "https://www.mathsgenie.co.uk/sectors-and-arcs.html"
+                    "https://justmaths.co.uk/wp-content/uploads/2015/12/Geometry-H-Similarity-Congruence-v2.pdf"
             );
 
 
@@ -70,7 +70,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionT11.png"),
                     1,
                     "d",
-                    "https://www.mathsgenie.co.uk/sohcahtoa.html"
+                    "http://justmaths.co.uk/wp-content/uploads/2015/12/Geometry-H-Trigonometry-v1.pdf"
             );
 
 
@@ -79,7 +79,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionT21.png"),
                     2,
                     "b",
-                    "https://www.mathsgenie.co.uk/sohcahtoa.html"
+                    "http://justmaths.co.uk/wp-content/uploads/2015/12/Geometry-H-Trigonometry-v1.pdf"
             );
 
 
@@ -88,7 +88,7 @@ public class QuestionConfig {
                     ByteConverter.imageToBytes("questionT31.png"),
                     3,
                     "c",
-                    "https://www.mathsgenie.co.uk/sine-rule.html"
+                    "http://justmaths.co.uk/wp-content/uploads/2015/12/Geometry-H-Trigonometry-v1.pdf"
             );
             questionRepositoryPostgres.saveAll(
                     List.of(questionS11, questionS21, questionS31, questionG11, questionG21, questionG31,
