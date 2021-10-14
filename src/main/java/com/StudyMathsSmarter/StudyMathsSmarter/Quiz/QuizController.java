@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,5 +55,15 @@ public class QuizController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STUDENT')")
     public List<Quiz> getAllQuizForUser(@PathVariable("id") int userId){
         return quizService.selectAllQuizForUser(userId);
+    }
+
+    @PutMapping("{quizId}/{columnToUpdate}/{contentToUpdate}")
+    public void updateQuiz(@PathVariable int quizId, @PathVariable String columnToUpdate, @PathVariable int contentToUpdate){
+        quizService.updateQuiz(quizId, columnToUpdate, contentToUpdate);
+    }
+
+    @PutMapping("{quizId}")
+    public void addLocalDateToQuiz(@PathVariable int quizId){
+        quizService.addLocalDateToQuiz(quizId);
     }
 }

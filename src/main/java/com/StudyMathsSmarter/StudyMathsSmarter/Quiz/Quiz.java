@@ -1,8 +1,10 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.Quiz;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity(name="Quiz")
@@ -19,24 +21,32 @@ public class Quiz {
     private int id;
     @Column(name="user_id")
     private int userId;
-    @Column(name="question_S1_score")
+    @Column(name="question_s1_score")
     private int questionS1Score;
-    @Column(name="question_S2_score")
+    @Column(name="question_s2_score")
     private int questionS2Score;
-    @Column(name="question_G1_score")
+    @Column(name="question_g1_score")
     private int questionG1Score;
-    @Column(name="question_G2_score")
+    @Column(name="question_g2_score")
     private int questionG2Score;
-    @Column(name="question_T1_score")
+    @Column(name="question_t1_score")
     private int questionT1Score;
-    @Column(name="question_T2_score")
+    @Column(name="question_t2_score")
     private int questionT2Score;
     @Column(name="time_stamp")
     private LocalDate timeStamp;
     @Column(name="result")
     private double result;
 
-    public Quiz(int userId, int questionS1Score, int questionS2Score, int questionG1Score, int questionG2Score, int questionT1Score, int questionT2Score, LocalDate timeStamp, double result) {
+    public Quiz(    @JsonProperty("user_id") int userId,
+                    @JsonProperty("question_s1_score") int questionS1Score,
+                    @JsonProperty("question_s2_score") int questionS2Score,
+                    @JsonProperty("question_g1_score") int questionG1Score,
+                    @JsonProperty("question_g2_score") int questionG2Score,
+                    @JsonProperty("question_t1_score") int questionT1Score,
+                    @JsonProperty("question_t2_score") int questionT2Score,
+                    @JsonProperty("time_stamp") LocalDate timeStamp,
+                    @JsonProperty("result") double result) {
         this.userId = userId;
         this.questionS1Score = questionS1Score;
         this.questionS2Score = questionS2Score;
