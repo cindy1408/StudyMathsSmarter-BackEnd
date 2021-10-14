@@ -1,7 +1,11 @@
 package com.StudyMathsSmarter.StudyMathsSmarter.User;
 
+import com.StudyMathsSmarter.StudyMathsSmarter.Quiz.Quiz;
+import com.StudyMathsSmarter.StudyMathsSmarter.security.AppUserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 //user is a reserved name in db... hence can't be used!
@@ -23,23 +27,34 @@ public class User {
     private String lastName;
     @Column(name="email" , nullable = false)
     private String email;
+    @Column(name = "password", nullable = false)
+    private String password;
+    //percentage
     @Column(name="score")
-    private double score;
+    private int score;
+    @Column(name="role")
+    private AppUserRole role;
 
     public User(@JsonProperty("first_name") String firstName,
                 @JsonProperty("last_name") String lastName,
                 @JsonProperty("email") String email,
-                @JsonProperty("score") int score) {
+                @JsonProperty("password") String password,
+                @JsonProperty("score") int score,
+                @JsonProperty("role") AppUserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.score = score;
+        this.role = role;
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String email, String password, AppUserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public User() {
@@ -77,25 +92,28 @@ public class User {
         this.email = email;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && score == user.score && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email);
+    public String getPassword() {
+        return password;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, score);
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public AppUserRole getRole() {
+        return role;
+    }
+
+    public void setRole(AppUserRole role) {
+        this.role = role;
     }
 
     @Override
@@ -105,7 +123,22 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", score=" + score +
+                ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && Double.compare(user.score, score) == 0 && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && role == user.role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password, score, role);
     }
 }
