@@ -3,6 +3,7 @@ package com.StudyMathsSmarter.StudyMathsSmarter.User;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -42,8 +43,8 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-    @GetMapping("/find")
-    public User getUserByEmail(@RequestParam("username") String username){
+    @GetMapping("find/{username}")
+    public User getUserByEmail(@PathVariable String username){
         return userService.getUserByEmail(username);
     }
 

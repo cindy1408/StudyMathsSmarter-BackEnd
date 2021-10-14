@@ -25,8 +25,8 @@ public class UserConfig {
             User yulin = new User(
                     "Yulin",
                     "Chen",
-                    "yulin@gmail.com",
-                    UserService.passwordEncoder().encode("Yulin"),
+                    "yulin@email.com",
+                    UserService.passwordEncoder().encode("admin"),
                     AppUserRole.ADMIN
             );
 

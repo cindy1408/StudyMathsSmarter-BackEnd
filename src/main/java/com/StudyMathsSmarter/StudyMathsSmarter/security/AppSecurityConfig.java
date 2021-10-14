@@ -37,7 +37,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/", "/study_maths_smarter/quiz/start", "/study_maths_smarter/quiz/{\\d+}",
                         "study_maths_smarter/user/rank").permitAll()
-                .antMatchers("/study_maths_smarter/question").hasRole(ADMIN.name())
+                .antMatchers("/study_maths_smarter/question").permitAll()
                 .antMatchers("/study_maths_smarter/user").hasRole(ADMIN.name())
                 .antMatchers("/study_maths_smarter/user/{\\d+}").hasRole(STUDENT.name())
                 .anyRequest()
@@ -49,6 +49,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/study_maths_smarter/quiz/start");
+        web.ignoring().antMatchers("/study_maths_smarter/question");
     }
 
     @Bean
